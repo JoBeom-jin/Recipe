@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<title>나만의 레시피</title>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="stylesheet" href="css/style.css">
+</head>
+<style>
+body {
+  box-sizing: border-box;
+  text-align: center;
+}
+
+#wheel {
+  display: inline-block;
+  width: 90%;
+  max-width: 800px;
+  height: 90%;
+  max-height: 800px;
+  margin-top: 3%;
+  transition: transform 10s cubic-bezier(.5,.1,.15,1);
+  transform: rotate(0deg);
+  z-index: 1;
+  pointer-events: none;
+}
+
+#peg {
+  display: block;
+  width: 3%;
+  min-width: 15px;
+  max-width: 40px;
+  height: auto;
+  position: absolute;
+  top: 2%;
+  left: 48.5%;
+  z-index: 2;
+}
+
+#button {
+  font-size: 24px;
+  border-radius: 10px;
+  width: 100px;
+  height: 60px;
+  color: white;
+  background: #89bd46;
+  border: none;
+  display: inline-block;
+  margin: 25px;
+  z-index: 3;
+}
+
+#button:hover, #button:focus {
+  background: #89bd46;
+}
+
+</style>
+
+<body>
+
+<img src="http://www.blimpage.com/pants/wheel_of_lunch.svg" id="wheel"><br>
+<img src="http://www.blimpage.com/pants/wheel_of_lunch_peg.svg" id="peg"><br>
+<button id="button">Spin</button>
+
+
+
+
+
+
+
+
+<script>
+// Cache our elements.
+var wheel = document.querySelector("#wheel"),
+    button = document.querySelector("#button"),
+    
+    // Initialise a random number variable. As zero.
+    rando = 0;
+
+// When we click the button...
+var spin_wheel = function () {
+  
+  // Generate a random number that'll determine how many degrees the wheel spins.
+  // We want it to spin 8 times (2880 degrees) and then land somewhere, so we'll add between 0 and 360 degrees to that.
+  // We add this to the already-created "rando" variable so that we can spin the wheel multiple times.
+  rando += (Math.random() * 360) + 2880;
+  
+  // And spin the wheel to the random position we just generated!
+  // Gotta cover ourselves with vendor prefixes.
+  wheel.style.webkitTransform = "rotate(" + rando + "deg)";
+  wheel.style.mozTransform = "rotate(" + rando + "deg)";
+  wheel.style.msTransform = "rotate(" + rando + "deg)";
+  wheel.style.transform = "rotate(" + rando + "deg)";
+  
+}
+
+button.addEventListener("click", spin_wheel, false);
+
+
+
+
+</script>
+
+
+
+
+</body>
+</html>
